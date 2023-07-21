@@ -1,58 +1,19 @@
-const express = require('express')
-const { ApolloServer } = require('apollo-server-express');
-const cors = require('cors')
-const { ServiceBroker } = require('moleculer');
+const app = require('./api/server');
+const { createStudentsTableQuery, query } = require('./data/models');
 
-const port = 4000;
-
-const typeDefs = `
-    type Student {
-        id: ID!
-        name: String!
-        scores: [Int]!
+async function initializeDatabase() {
+    try {
+      // Создаем таблицу, если она еще не существует
+        await query(createStudentsTableQuery);
+        console.log('Table "students" created successfully.');
+  
+      // Здесь также можно добавить другие инициализации базы данных, если необходимо
+    } catch (error) {
+        console.error('Error initializing database:', error.message);
+        process.exit(1);
     }
-
-    type Query {
-        students: [Student]
-        student(id: ID!): Student
-        studentRatings: [Student]
-    }
-`;
-const resolvers = {
-    Query: {
-        students: async (_, __, { dataSources }) => {
-            return await dataSources.students.getStudents();
-        },
-        student: async (_, { id }, { dataSources }) => {
-            return await dataSources.students.getStudentById({ id });
-        },
-        studentRatings: async (_, __, { dataSources }) => {
-            return await dataSources.students.getStudentRatings();
-        },
-    },
-};
-
-async function start() {
-    const app = express();
-    app.use(cors())
-    
-    const studentsService = new ServiceBroker({ nodeID: 'students-service' });
-    studentsService.createService(require('./students.serivice'));
-  
-    const server = new ApolloServer({
-      typeDefs,
-      resolvers,
-      dataSources: () => ({
-        students: studentsService,
-      }),
-    });
-  
-    await server.start();
-    server.applyMiddleware({ app });
-  
-    app.listen(port, () => {
-      console.log(`Server ready at http://localhost:${port}${server.graphqlPath}`);
-    });
 }
 
-start()
+initializeDatabase().then(() => {
+    app
+});
