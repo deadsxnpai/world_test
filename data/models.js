@@ -21,6 +21,7 @@ const createStudentsTableQuery = `
         )
 `;
 
+
 // Функция для выполнения запросов к базе данных
 async function query(text, params) {
     const result = await pool.query(text, params);

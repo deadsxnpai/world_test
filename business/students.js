@@ -16,10 +16,9 @@ async function getStudentById(id) {
 // Получение рейтинга студентов
 async function getStudentRatings() {
     const { rows } = await query(`
-        SELECT id, name, SUM(score) as total_score
-        FROM students
+        SELECT * FROM students
         GROUP BY id, name
-        ORDER BY total_score DESC`);
+        ORDER BY scores DESC`,);
     return rows;
 }
 
