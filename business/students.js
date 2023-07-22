@@ -1,5 +1,6 @@
 // src/business/students.js
-const { query } = require('../data/models');
+const { query } = require('../data/db');
+const { addStudent } = require('../data/studentModel');
 
 // Получение всех студентов
 async function getAllStudents() {
@@ -13,7 +14,12 @@ async function getStudentById(id) {
     return rows[0];
 }
 
+async function createStudent(first_name, last_name, email, phone_number, transcript_id,date_of_birth,address) {
+    return await addStudent(first_name, last_name, email, phone_number, transcript_id, date_of_birth,address);
+}
+
 module.exports = {
     getAllStudents,
     getStudentById,
+    createStudent
 };

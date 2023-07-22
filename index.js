@@ -1,19 +1,21 @@
 const app = require('./api/server');
-const { query } = require('./data/models');
+const { query } = require('./data/db');
 const { createStudentsTableQuery } = require('./data/studentModel');
 const { createSubjectsTableQuery } = require('./data/subjectModel');
 const { createTranscriptsTableQuery } = require('./data/transcriptModel');
+const { createTranscriptSubjectQuery } = require('./data/transcriptSubjectModel');
 
 async function initializeDatabase() {
     try {
-        // await query(createTriggerTranscripts);
-        // console.log('Trigger" created successfully.');
         
         await query(createSubjectsTableQuery);
         console.log('Table "subjects" created successfully.');
 
         await query(createTranscriptsTableQuery);
         console.log('Table "transcritps" created successfully.');
+
+        await query(createTranscriptSubjectQuery);
+        console.log('Table "transcripts_subjects" created successfully.');
 
         await query(createStudentsTableQuery);
         console.log('Table "students" created successfully.');

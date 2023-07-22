@@ -18,7 +18,6 @@ const typeDefs = gql`
     type Transcript {
         id: ID!
         group_name:String
-        subject_ids:[ID]
     }
 
     type Subject {
@@ -28,15 +27,33 @@ const typeDefs = gql`
         semester: String
     }
 
-    type Query {
-        students: [Student]
-        student(id: ID!): Student
+    type TranscriptSubject {
+        transcript_id:ID!
+        subject_id:ID!
+    }
 
-        transcripts: [Transcript]
-        transcript(id: ID!): Transcript
+    type Mutation {
+        createStudent(first_name:String!, last_name:String!, email:String!, phone_number:String!, transcript_id:ID!, date_of_birth: Date,
+        address:String): Student
+    }
+
+    type Mutation {
+        createSubject(subject_name:String!, grade:Float!, semester:String!): Subject
+    }
+
+    type Mutation {
+        createTransript(group_name:String!): Transcript
+    }
+
+    type Query {
+        getAllStudents: [Student]
+        getStudentById(id: ID!): Student
+
+        getAllTranscripts: [Transcript]
+        getTranscriptById(id: ID!): Transcript
       
-        subjects: [Subject]
-        subject(id: ID!): [Subject]
+        getAllSubjects: [Subject]
+        getSubjectByTranscriptId(id: ID!): [Subject]
         
     }
 `;

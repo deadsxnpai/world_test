@@ -1,29 +1,43 @@
 // src/api/resolvers.js
-const { getAllStudents, getStudentById } = require('../business/students');
-const { getAllSubjects, getSubjectByTranscriptId } = require('../business/subjects');
-const {getAllTranscripts, getTranscriptById} = require('../business/transcripts')
+const { getAllStudents, getStudentById, createStudent } = require('../business/students');
+const { getAllSubjects, getSubjectByTranscriptId, createSubject } = require('../business/subjects');
+const { getAllTranscripts, getTranscriptById, createTransript } = require('../business/transcripts')
 
 const resolvers = {
     Query: {
-        students: async () => {
+        getAllStudents: async () => {
             return getAllStudents();
         },
-        student: async (_, { id }) => {
+        getStudentById: async (_, { id }) => {
             return getStudentById(id);
         },
-        transcripts: async () => {
+        getAllTranscripts: async () => {
             return getAllTranscripts();
         },
-        transcript: async (_, { id }) => {
+        getTranscriptById: async (_, { id }) => {
             return getTranscriptById(id);
         },
-        subjects: async () => {
+        getAllSubjects: async () => {
             return getAllSubjects();
         },
-        subject: async (_, { id }) => {
+        getSubjectByTranscriptId: async (_, { id }) => {
             return getSubjectByTranscriptId(id);
         },
     },
+    Mutation: { 
+        createStudent: async (_, { first_name, last_name, email, phone_number, transcript_id,date_of_birth,address}) => {
+            // Добавить валидацию данных
+            return await createStudent(first_name, last_name, email, phone_number, transcript_id, date_of_birth, address);
+        },
+        createSubject: async(_,{subject_name, grade, semester}) => {
+            // Добавить валидацию данных
+            return await createSubject(subject_name, grade, semester);
+        },
+        createTransript: async(_,{group_name}) => {
+            // Добавить валидацию данных
+            return await createTransript(group_name);
+        },
+      },
 };
 
 module.exports = resolvers;

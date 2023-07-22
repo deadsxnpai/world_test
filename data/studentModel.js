@@ -1,3 +1,6 @@
+const { query } = require("./db");
+const moment = require('moment')
+
 // Определяем схему таблицы "students"
 const createStudentsTableQuery = `
     CREATE TABLE IF NOT EXISTS students (
@@ -11,7 +14,17 @@ const createStudentsTableQuery = `
         transcript_id INTEGER REFERENCES transcripts(id) ON DELETE CASCADE
         )
 `;
+async function addStudent(first_name, last_name, email, phone_number, transcript_id,date_of_birth, address) {
+    const insertQuery = `
+        INSERT INTO students (first_name, last_name, email, phone_number, transcript_id, date_of_birth, address) 
+        VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *
+    `;
+    const values = [first_name, last_name, email, phone_number, transcript_id, date_of_birth,address];
+    const { rows } = await query(insertQuery, values);
+    return rows[0];
+}
 
 module.exports = {
-    createStudentsTableQuery
+    createStudentsTableQuery,
+    addStudent
 };

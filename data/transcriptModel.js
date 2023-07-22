@@ -1,30 +1,19 @@
+const { query } = require("./db");
+
 const createTranscriptsTableQuery = `
     CREATE TABLE IF NOT EXISTS transcripts (
         id SERIAL PRIMARY KEY,   
-        group_name VARCHAR(100),
-        subject_ids INTEGER[]
+        group_name VARCHAR(100)
         );
 `;
 
-const createTriggerTranscripts =`
-        CREATE OR REPLACE FUNCTION update_subjects_ids()
-        RETURNS TRIGGER AS
-        $$
-        BEGIN
-        IF NEW.subject_ids IS NOT NULL THEN
-            NEW.subject_ids := ARRAY(SELECT DISTINCT unnest(NEW.subject_ids));
-        END IF;
-        RETURN NEW;
-        END;
-        $$
-        LANGUAGE plpgsql;
-        CREATE TRIGGER update_subject_ids_trigger
-        BEFORE INSERT OR UPDATE ON transcripts
-        FOR EACH ROW
-        EXECUTE FUNCTION update_subjects_ids();
-`;
-
+async function addTranscript(group_name) {
+    const insertQuery = 'INSERT INTO transcripts (group_name) VALUES ($1) RETURNING *';
+    const values = [group_name];
+    const { rows } = await query(insertQuery, values);
+    return rows[0];
+}
 module.exports = {
     createTranscriptsTableQuery,
-    createTriggerTranscripts
+    addTranscript
 };
