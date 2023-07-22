@@ -13,17 +13,7 @@ async function getStudentById(id) {
     return rows[0];
 }
 
-// Получение рейтинга студентов
-async function getStudentRatings() {
-    const { rows } = await query(`
-        SELECT * FROM students
-        GROUP BY id, name
-        ORDER BY scores DESC`,);
-    return rows;
-}
-
 module.exports = {
     getAllStudents,
     getStudentById,
-    getStudentRatings,
 };

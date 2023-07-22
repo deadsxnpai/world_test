@@ -4,7 +4,7 @@ const express = require('express');
 const resolvers = require('./resolvers');
 const typeDefs = require('./schema');
 const cors = require('cors')
-const port = 4000
+const port = 3000
 
 async function start() {
     const app = express();
