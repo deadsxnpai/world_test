@@ -1,5 +1,4 @@
 const { query } = require("./db");
-const moment = require('moment')
 
 // Определяем схему таблицы "students"
 const createStudentsTableQuery = `
