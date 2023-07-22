@@ -1,6 +1,6 @@
 // src/business/students.js
 const { query } = require('../data/db');
-const { addSubject } = require('../data/subjectModel');
+const { addSubject, getSubjectByTranscript } = require('../data/subjectModel');
 
 async function getAllSubjects() {
     const { rows } = await query('SELECT * FROM subjects');
@@ -8,9 +8,8 @@ async function getAllSubjects() {
 }
 
 async function getSubjectByTranscriptId(id) {
-    const { rows } = await query('SELECT * FROM subjects WHERE id = ANY (SELECT unnest(subject_ids) FROM transcripts WHERE id = $1);', [id]);
-    return rows;
-}
+    return await getSubjectByTranscript(id);
+}   
 
 async function createSubject(subject_name, grade, semester) {
     return await addSubject(subject_name, grade, semester);

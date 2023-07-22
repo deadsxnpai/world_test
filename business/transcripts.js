@@ -1,5 +1,5 @@
 const { query } = require('../data/db');
-const { addTranscript } = require('../data/transcriptModel');
+const { addTranscript, unionTables } = require('../data/transcriptModel');
 
 // Получение всех зачеток
 async function getAllTranscripts() {
@@ -16,9 +16,13 @@ async function createTransript(group_name) {
     return await addTranscript(group_name);
 }
 
+async function unionTranscriptSubjects(transcript_id, subject_id) {
+    return await unionTables(transcript_id, subject_id);
+}
 
 module.exports = {
     getAllTranscripts,
     getTranscriptById,
+    unionTranscriptSubjects,
     createTransript
 };

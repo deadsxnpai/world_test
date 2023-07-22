@@ -1,7 +1,7 @@
 // src/api/resolvers.js
 const { getAllStudents, getStudentById, createStudent } = require('../business/students');
 const { getAllSubjects, getSubjectByTranscriptId, createSubject } = require('../business/subjects');
-const { getAllTranscripts, getTranscriptById, createTransript } = require('../business/transcripts')
+const { getAllTranscripts, getTranscriptById, createTransript, unionTranscriptSubjects } = require('../business/transcripts')
 
 const resolvers = {
     Query: {
@@ -36,6 +36,10 @@ const resolvers = {
         createTransript: async(_,{group_name}) => {
             // Добавить валидацию данных
             return await createTransript(group_name);
+        },
+        unoinTranscriptsSubjects: async(_,{transcript_id, subject_id}) => {
+            // Добавить валидацию данных
+            return await unionTranscriptSubjects(transcript_id, subject_id);
         },
       },
 };

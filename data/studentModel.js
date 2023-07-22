@@ -13,6 +13,14 @@ const createStudentsTableQuery = `
         transcript_id INTEGER REFERENCES transcripts(id) ON DELETE CASCADE
         )
 `;
+async function getAll(){
+    const { rows } = await query('SELECT * FROM students');
+    return rows;
+}
+async function getStudent(id){
+    const { rows } = await query('SELECT * FROM students WHERE id = $1', [id]);
+    return rows[0];
+}
 async function addStudent(first_name, last_name, email, phone_number, transcript_id,date_of_birth, address) {
     const insertQuery = `
         INSERT INTO students (first_name, last_name, email, phone_number, transcript_id, date_of_birth, address) 
@@ -25,5 +33,7 @@ async function addStudent(first_name, last_name, email, phone_number, transcript
 
 module.exports = {
     createStudentsTableQuery,
+    getAll,
+    getStudent,
     addStudent
 };
