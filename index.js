@@ -1,5 +1,6 @@
 const app = require('./api/server');
 const { query } = require('./data/db');
+const { createRatingsTableQuery } = require('./data/ratingModel');
 const { createStudentsTableQuery } = require('./data/studentModel');
 const { createSubjectsTableQuery } = require('./data/subjectModel');
 const { createTranscriptsTableQuery } = require('./data/transcriptModel');
@@ -19,6 +20,9 @@ async function initializeDatabase() {
 
         await query(createStudentsTableQuery);
         console.log('Table "students" created successfully.');
+
+        await query(createRatingsTableQuery);
+        console.log('Table "ratings" created successfully.');
         
       // Здесь также можно добавить другие инициализации базы данных, если необходимо
     } catch (error) {

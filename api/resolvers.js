@@ -1,4 +1,5 @@
 // src/api/resolvers.js
+const { getAllRatings, getRatingById, calculateRatingByTranscript } = require('../business/ratings');
 const { getAllStudents, getStudentById, createStudent } = require('../business/students');
 const { getAllSubjects, getSubjectByTranscriptId, createSubject } = require('../business/subjects');
 const { getAllTranscripts, getTranscriptById, createTransript, unionTranscriptSubjects } = require('../business/transcripts')
@@ -20,8 +21,14 @@ const resolvers = {
         getAllSubjects: async () => {
             return getAllSubjects();
         },
-        getSubjectByTranscriptId: async (_, { id }) => {
+        getSubjectsByTranscriptId: async (_, { id }) => {
             return getSubjectByTranscriptId(id);
+        },
+        getAllRarings: async () => {
+            return getAllRatings();
+        },
+        getRatingById: async (_, { id }) => {
+            return getRatingById(id);
         },
     },
     Mutation: { 
@@ -40,6 +47,10 @@ const resolvers = {
         unoinTranscriptsSubjects: async(_,{transcript_id, subject_id}) => {
             // Добавить валидацию данных
             return await unionTranscriptSubjects(transcript_id, subject_id);
+        },
+        calculateRatingByTranscript: async(_,{transcript_id}) => {
+            // Добавить валидацию данных
+            return await calculateRatingByTranscript(transcript_id);
         },
       },
 };
