@@ -9,7 +9,7 @@
 <b>Таблица <i>students</i>:</b><br> 
     <ul class="nav">
         <li>id</li>
-        <li>first_name (Фамилия) </li>)
+        <li>first_name (Фамилия) </li>
         <li>last_name (Имя)</li>
         <li>date_of_birth (Дата рождения)</li>
         <li>email (e-mail)</li>
