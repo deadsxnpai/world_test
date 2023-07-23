@@ -7,31 +7,40 @@
 <hr>
 
 <b>Таблица <i>students</i>:</b><br> 
-    id<br>
-    first_name (Фамилия)<br>
-    last_name (Имя)<br>
-    date_of_birth (Дата рождения)<br>
-    email (e-mail)<br>
-    phone_number (номер телефона)<br>
-    address (адрес)<br>
-    transcript_id (внешний ключ с таблицей зачетки)<br>
+    <ul class="nav">
+        <li>id</li>
+        <li>first_name (Фамилия</li>)
+        <li>last_name (Имя)</li>
+        <li>date_of_birth (Дата рождения)</li>
+        <li>email (e-mail)</li>
+        <li>phone_number (номер телефона)</li>
+        <li>address (адрес)</li>
+        <li>transcript_id (внешний ключ с таблицей зачетки)</li>
+    </ul>
 <hr>
 <b>Таблица <i>transcripts</i>:</b><br> 
-    id<br>   
-    group_name (Название группы)<br>
+     <ul class="nav">
+        <li>id</li>
+        <li>group_name (Название группы)</li>
+    </ul>
 <hr>
 <b>Таблица <i>subjects</i>:</b> <br> 
-    id<br>
-    subject_name (Название дисциплины) <br>
-    grade (Оценка)
-    semester (Семестр) <br>
+    <ul class="nav">
+        <li>id</li>
+        <li>subject_name (Название дисциплины)</li>
+        <li>grade (Оценка)<li>
+        <li>semester (Семестр)</li>
+    </ul>
 <hr>
 <b>Таблица <i>transcripts_subjects</i>:</b> <br> 
-Связка зачеток и дисциплин - какой предмет в какой зачетке. Может быть, что одна зачетка имеет несколько дисциплин. <br>
+Связка зачеток и дисциплин - какой предмет в какой зачетке.<br>
+Может быть, что одна зачетка имеет несколько дисциплин. <br>
 <hr>
 <b>Таблица <i>ratings</i>:</b> <br> 
-    transcript_id (Id зачетки (вн.ключ))<br>
-    rating (посчитанный рейтинг по зачетке)<br>
+    <ul class="nav">
+        <li>transcript_id (Id зачетки (вн.ключ))</li>
+        <li>rating (посчитанный рейтинг по зачетке)</li>
+    </ul>
 <hr>
 <h3>API:</h3>
     1. crud-methods для каждой таблицы<br>
