@@ -36,7 +36,8 @@
     1. crud-methods для каждой таблицы<br>
     2. get..ById get-метод по id для каждой таблицы.<br>
     3. calculateRatingByTranscript() - функция по подсчету рейтинга для каждой зачетки по семестрам.<br>
-
+<hr>
+<h2>Демонстрация решения:</h2>
 ![Иллюстрация к проекту](https://github.com/deadsxnpai/../raw/master/../file.png)<hr>
 ![Иллюстрация к проекту](https://github.com/deadsxnpai/../raw/master/../file.png)<hr>
 ![Иллюстрация к проекту](https://github.com/deadsxnpai/../raw/master/../file.png)<hr>
