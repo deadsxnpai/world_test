@@ -31,6 +31,11 @@ const typeDefs = gql`
         rating: Float
     }
 
+    type TranscriptSubjects{
+        transcript_id:ID!
+        subject_id:ID!
+    }
+
     type Mutation {
         createStudent(
             first_name:String!, 
@@ -40,22 +45,26 @@ const typeDefs = gql`
             phone_number:String!, 
             address:String!
             transcript_id:ID!
-            ): Student
+        ): Student
 
         createSubject(
             subject_name:String!, 
             grade:Float!, 
             semester:String!
-            ): Subject
+        ): Subject
 
         createTransript(
             group_name:String!
-            ): Transcript
-
+        ): Transcript
 
         calculateRatingByTranscript(
             transcript_id:ID!
         ): Rating
+
+        createTranscriptsSubjects(
+            transcript_id:ID!
+            subject_id:ID!
+        ): TranscriptSubjects
     }
 
     type Query {

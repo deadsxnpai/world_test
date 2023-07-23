@@ -42,13 +42,18 @@ const resolvers = {
         createSubject: async(_,{subject_name, grade, semester}, { broker }) => {
             return await broker.call("subjects.createSubject",{subject_name, grade, semester});
         },
+
         createTransript: async(_,{group_name}, { broker }) => {
             return await broker.call("transcripts.createTransript",{group_name});
+        },
+        createTranscriptsSubjects: async(_,{transcript_id, subject_id}, { broker }) => {
+            return await broker.call("transcripts.createTranscriptsSubjects", {transcript_id, subject_id});
         },
         calculateRatingByTranscript: async(_,{transcript_id}, { broker }) => {
             return await broker.call("ratings.calculateRatingByTranscript", {transcript_id, broker});
         },
-      },
+        
+    }
 };
 
 module.exports = resolvers;

@@ -29,6 +29,6 @@ module.exports = {
                 console.log('Record already exists');
                 return rows[0];
             }
-        }
+        }, 
     }
 };
