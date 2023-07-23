@@ -75,7 +75,7 @@ const typeDefs = gql`
         getTranscriptById(id: ID!): Transcript
         getAllSubjects: [Subject]
         getSubjectsByTranscriptId(id: ID!): [Subject]
-        getAllRarings:[Rating]
+        getAllRatings: [Rating]
         getRatingById(id:ID!): Rating
     }
 `;

@@ -24,7 +24,7 @@ const resolvers = {
         getSubjectsByTranscriptId: async (_, { id }) => {
             return getSubjectByTranscriptId(id);
         },
-        getAllRarings: async () => {
+        getAllRatings: async () => {
             return getAllRatings();
         },
         getRatingById: async (_, { id }) => {
