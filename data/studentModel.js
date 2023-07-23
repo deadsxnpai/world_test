@@ -8,9 +8,22 @@ const createStudentsTableQuery = `
         phone_number VARCHAR(20),
         address TEXT,
         transcript_id INTEGER REFERENCES transcripts(id) ON DELETE CASCADE
-        )
-`;
+        );
+    `;
+const AddConstraintQuery = `
+        ALTER TABLE students
+        ADD CONSTRAINT uq_students_transcript_id UNIQUE (transcript_id);
+    `;
 
+const checkExistsConstraintQuery = `
+        SELECT EXISTS (
+        SELECT 1
+        FROM pg_constraint
+        WHERE conname = 'uq_students_transcript_id'
+        AND conrelid = 'students'::regclass);
+    `;
 module.exports = {
     createStudentsTableQuery,
+    AddConstraintQuery,
+    checkExistsConstraintQuery
 };

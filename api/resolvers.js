@@ -1,51 +1,52 @@
-// src/api/resolvers.js
-const { getAllRatings, getRatingById, calculateRatingByTranscript } = require('../business/ratings');
-const { getAllStudents, getStudentById, createStudent } = require('../business/students');
-const { getAllSubjects, getSubjectByTranscriptId, createSubject } = require('../business/subjects');
-const { getAllTranscripts, getTranscriptById, createTransript, unionTranscriptSubjects } = require('../business/transcripts')
+const { calculateRatingByTranscript } = require('../services/ratings.service');
 
 const resolvers = {
     Query: {
-        getAllStudents: async () => {
-            return getAllStudents();
+        // Students 
+        getAllStudents: async (_, __, { broker }) => {
+            return await broker.call("students.getAllStudents");
         },
-        getStudentById: async (_, { id }) => {
-            return getStudentById(id);
+        getStudentById: async (_, { id }, { broker }) => {
+            return await broker.call("students.getStudentById", { id });
         },
-        getAllTranscripts: async () => {
-            return getAllTranscripts();
+
+        // Transcriptions
+        getAllTranscripts: async (_, __, { broker }) => {
+            return await broker.call("transcripts.getAllTranscripts");
         },
-        getTranscriptById: async (_, { id }) => {
-            return getTranscriptById(id);
+        getTranscriptById: async (_, { id }, { broker }) => {
+            return await broker.call("transcripts.getTranscriptById", { id });
         },
-        getAllSubjects: async () => {
-            return getAllSubjects();
+
+        // Subjects
+        getAllSubjects: async (_, __, { broker }) => {
+            return await broker.call("subjects.getAllSubject");
         },
-        getSubjectsByTranscriptId: async (_, { id }) => {
-            return getSubjectByTranscriptId(id);
+        getSubjectsByTranscriptId: async (_, { id }, { broker }) => {
+            return await broker.call("subjects.getSubjectsByTranscriptId", { id });
         },
-        getAllRatings: async () => {
-            return getAllRatings();
+
+        // Ratings
+        getAllRatings: async (_, __, { broker }) => {
+            return await broker.call("ratings.getAllRatings");
         },
-        getRatingById: async (_, { id }) => {
-            return getRatingById(id);
+        getRatingById: async (_, { id }, { broker }) => {
+            return await broker.call("ratings.getRatingById", { id });
         },
     },
+
     Mutation: { 
-        createStudent: async (_, { first_name, last_name, email, phone_number, transcript_id,date_of_birth,address}) => {
-            return await createStudent(first_name, last_name, email, phone_number, transcript_id, date_of_birth, address);
+        createStudent: async (_, {first_name, last_name,date_of_birth, email, phone_number,address, transcript_id}, { broker }) => {
+            return await broker.call("students.createStudent",{first_name, last_name,date_of_birth, email, phone_number, address, transcript_id});
         },
-        createSubject: async(_,{subject_name, grade, semester}) => {
-            return await createSubject(subject_name, grade, semester);
+        createSubject: async(_,{subject_name, grade, semester}, { broker }) => {
+            return await broker.call("subjects.createSubject",{subject_name, grade, semester});
         },
-        createTransript: async(_,{group_name}) => {
-            return await createTransript(group_name);
+        createTransript: async(_,{group_name}, { broker }) => {
+            return await broker.call("transcripts.createTransript",{group_name});
         },
-        unoinTranscriptsSubjects: async(_,{transcript_id, subject_id}) => {
-            return await unionTranscriptSubjects(transcript_id, subject_id);
-        },
-        calculateRatingByTranscript: async(_,{transcript_id}) => {
-            return await calculateRatingByTranscript(transcript_id);
+        calculateRatingByTranscript: async(_,{transcript_id}, { broker }) => {
+            return await broker.call("ratings.calculateRatingByTranscript", {transcript_id, broker});
         },
       },
 };

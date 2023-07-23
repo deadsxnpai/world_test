@@ -18,6 +18,8 @@
     "graphql-http": "^1.21.0",
     "graphql-tag": "^2.12.6",
     "moleculer": "^0.14.30",
+    "moleculer-web": "^0.10.6",
+    "nats": "^2.15.1",
     "nodemon": "^3.0.1",
     "pg": "^8.11.1"
   }

@@ -1,7 +1,7 @@
 const app = require('./api/server');
 const { query } = require('./data/db');
 const { createRatingsTableQuery } = require('./data/ratingModel');
-const { createStudentsTableQuery } = require('./data/studentModel');
+const { createStudentsTableQuery, AddConstraintQuery, checkExistsConstraintQuery } = require('./data/studentModel');
 const { createSubjectsTableQuery } = require('./data/subjectModel');
 const { createTranscriptsTableQuery } = require('./data/transcriptModel');
 const { createTranscriptSubjectQuery } = require('./data/transcriptSubjectModel');
@@ -21,6 +21,12 @@ async function initializeDatabase() {
         await query(createStudentsTableQuery);
         console.log('Table "students" created successfully.');
 
+        let res = await query(checkExistsConstraintQuery)
+        if (res.rows[0].exists !== true ){
+            await query(AddConstraintQuery)
+            console.log("Constraint bound created")
+        }
+
         await query(createRatingsTableQuery);
         console.log('Table "ratings" created successfully.');
         
@@ -32,5 +38,5 @@ async function initializeDatabase() {
 }
 
 initializeDatabase().then(() => {
-    app
+    app.start()
 });

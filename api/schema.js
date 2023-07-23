@@ -1,4 +1,3 @@
-// src/api/schema.js
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
@@ -10,8 +9,8 @@ const typeDefs = gql`
         last_name: String
         date_of_birth: Date,
         email: String
-        phone_number: String
-        address: String
+        phone_number: String!
+        address: String!
         transcript_id: ID!
     }
 
@@ -26,12 +25,7 @@ const typeDefs = gql`
         grade: Float
         semester: String
     }
-
-    type TranscriptSubjects {
-        transcript_id:ID!
-        subject_id:ID!
-    }
-
+    
     type Rating {
         transcript_id:ID!
         rating: Float
@@ -41,11 +35,11 @@ const typeDefs = gql`
         createStudent(
             first_name:String!, 
             last_name:String!, 
+            date_of_birth: Date!
             email:String!, 
             phone_number:String!, 
-            transcript_id:ID!, 
-            date_of_birth: Date, 
-            address:String
+            address:String!
+            transcript_id:ID!
             ): Student
 
         createSubject(
@@ -58,10 +52,6 @@ const typeDefs = gql`
             group_name:String!
             ): Transcript
 
-        unoinTranscriptsSubjects(
-            transcript_id:ID!, 
-            subject_id: ID!
-            ): TranscriptSubjects
 
         calculateRatingByTranscript(
             transcript_id:ID!
