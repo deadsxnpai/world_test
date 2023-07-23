@@ -32,6 +32,10 @@
     transcript_id (Id зачетки (вн.ключ))<br>
     rating (посчитанный рейтинг по зачетке)<br>
 <hr>
+<h3>API:</h3>
+    1. crud-methods для каждой таблицы<br>
+    2. get..ById get-метод по id для каждой таблицы.<br>
+    3. calculateRatingByTranscript() - функция по подсчету рейтинга для каждой зачетки по семестрам.<br>
 
 ![Иллюстрация к проекту](https://github.com/deadsxnpai/../raw/master/../file.png)<hr>
 ![Иллюстрация к проекту](https://github.com/deadsxnpai/../raw/master/../file.png)<hr>
