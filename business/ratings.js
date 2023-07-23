@@ -1,15 +1,39 @@
-const { getAll, getRating, calculateRating } = require("../data/ratingModel");
+const { query } = require("../data/db");
+const { getSubjectByTranscriptId } = require("./subjects");
+
 
 async function getAllRatings() {
-    return await getAll()
+    const { rows } = await query('SELECT * FROM ratings');
+    return rows;
 }
 
 async function getRatingById(id) {
-    return await getRating(id);
+    const { rows } = await query(`
+    SELECT * FROM ratings WHERE transcript_id = $1;
+    `, [id]);
+    return rows;
 }   
 
-async function calculateRatingByTranscript(id) {
-    return await calculateRating(id);
+async function calculateRatingByTranscript(transcript_id) {
+    let rating = 0
+    const subjects = await getSubjectByTranscriptId(transcript_id)
+    subjects.forEach(element => rating += parseInt(element.grade));
+    rating = rating / subjects.length;
+
+    const existingRecordQuery = 'SELECT * FROM ratings WHERE transcript_id = $1';
+    const { rows } = await query(existingRecordQuery, [transcript_id]);
+
+    if (rows.length > 0) {
+        const updateQuery = 'UPDATE ratings SET rating = $1 WHERE transcript_id = $2 RETURNING *';
+        const updateValues = [rating, transcript_id];
+        const { rows: updatedRows } = await query(updateQuery, updateValues);
+        return updatedRows[0];
+    } else {
+        const insertQuery = 'INSERT INTO ratings (transcript_id, rating) VALUES ($1, $2) RETURNING *';
+        const insertValues = [transcript_id, rating];
+        const { rows: insertedRows } = await query(insertQuery, insertValues);
+        return insertedRows[0];
+    }
 }   
 
 module.exports = {

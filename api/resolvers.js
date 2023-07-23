@@ -33,23 +33,18 @@ const resolvers = {
     },
     Mutation: { 
         createStudent: async (_, { first_name, last_name, email, phone_number, transcript_id,date_of_birth,address}) => {
-            // Добавить валидацию данных
             return await createStudent(first_name, last_name, email, phone_number, transcript_id, date_of_birth, address);
         },
         createSubject: async(_,{subject_name, grade, semester}) => {
-            // Добавить валидацию данных
             return await createSubject(subject_name, grade, semester);
         },
         createTransript: async(_,{group_name}) => {
-            // Добавить валидацию данных
             return await createTransript(group_name);
         },
         unoinTranscriptsSubjects: async(_,{transcript_id, subject_id}) => {
-            // Добавить валидацию данных
             return await unionTranscriptSubjects(transcript_id, subject_id);
         },
         calculateRatingByTranscript: async(_,{transcript_id}) => {
-            // Добавить валидацию данных
             return await calculateRatingByTranscript(transcript_id);
         },
       },
