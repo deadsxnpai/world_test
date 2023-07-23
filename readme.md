@@ -17,13 +17,13 @@
         <li>address (адрес)</li>
         <li>transcript_id (внешний ключ с таблицей зачетки)</li>
     </ul>
-<hr>
+
 <b>Таблица <i>transcripts</i>:</b><br> 
      <ul class="nav">
         <li>id</li>
         <li>group_name (Название группы)</li>
     </ul>
-<hr>
+
 <b>Таблица <i>subjects</i>:</b> <br> 
     <ul class="nav">
         <li>id</li>
@@ -31,11 +31,11 @@
         <li>grade(Оценка )</li>
         <li>semester (Семестр)</li>
     </ul>
-<hr>
+
 <b>Таблица <i>transcripts_subjects</i>:</b> <br> 
 Связка зачеток и дисциплин - какой предмет в какой зачетке.<br>
 Может быть, что одна зачетка имеет несколько дисциплин. <br>
-<hr>
+
 <b>Таблица <i>ratings</i>:</b> <br> 
     <ul class="nav">
         <li>transcript_id (Id зачетки (вн.ключ))</li>
