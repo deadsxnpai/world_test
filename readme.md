@@ -9,7 +9,7 @@
 <b>Таблица <i>students</i>:</b><br> 
     <ul class="nav">
         <li>id</li>
-        <li>first_name (Фамилия</li>)
+        <li>first_name (Фамилия) </li>)
         <li>last_name (Имя)</li>
         <li>date_of_birth (Дата рождения)</li>
         <li>email (e-mail)</li>
@@ -28,7 +28,7 @@
     <ul class="nav">
         <li>id</li>
         <li>subject_name (Название дисциплины)</li>
-        <li>grade (Оценка)<li>
+        <li>grade(Оценка )</li>
         <li>semester (Семестр)</li>
     </ul>
 <hr>
