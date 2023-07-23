@@ -8,10 +8,12 @@ const createSubjectsTableQuery = `
         semester VARCHAR(20)
         )
 `;
+
 async function getAll() {
     const { rows } = await query('SELECT * FROM subjects');
     return rows;
 }
+
 async function getSubjectByTranscript(id){
     const { rows } = await query(`
     SELECT * FROM subjects join transcripts_subjects 
@@ -22,7 +24,6 @@ async function getSubjectByTranscript(id){
 }
 
 async function addSubject(subject_name, grade, semester) {
-
     const existingRecordQuery = 'SELECT * FROM subjects WHERE subject_name = $1 AND grade = $2 AND semester = $3';
     const { rows } = await query(existingRecordQuery, [subject_name, grade, semester]);
 

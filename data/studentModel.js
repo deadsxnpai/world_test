@@ -13,6 +13,7 @@ const createStudentsTableQuery = `
         transcript_id INTEGER REFERENCES transcripts(id) ON DELETE CASCADE
         )
 `;
+
 async function getAll(){
     const { rows } = await query('SELECT * FROM students');
     return rows;
