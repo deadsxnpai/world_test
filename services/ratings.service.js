@@ -42,10 +42,7 @@ module.exports = {
             } catch(error){
                 console.error(error);
                 rating = 0;
-            }
-            
-            
-
+            }   
             const existingRecordQuery = 'SELECT * FROM ratings WHERE transcript_id = $1';
             const { rows } = await query(existingRecordQuery, [transcript_id]);
         
