@@ -38,12 +38,13 @@ module.exports = {
 
             try {
                 rating = parseFloat(rating * 100 / subjectsAmount);
-                console.log(rating)
+                rating = Math.round(rating)
             } catch(error){
                 console.error(error);
+                rating = 0;
             }
             
-            rating = Math.round(rating) || 0;
+            
 
             const existingRecordQuery = 'SELECT * FROM ratings WHERE transcript_id = $1';
             const { rows } = await query(existingRecordQuery, [transcript_id]);
