@@ -43,7 +43,7 @@ module.exports = {
                 console.error(error);
             }
             
-            rating = Math.round(rating, 3) || 0;
+            rating = Math.round(rating) || 0;
 
             const existingRecordQuery = 'SELECT * FROM ratings WHERE transcript_id = $1';
             const { rows } = await query(existingRecordQuery, [transcript_id]);
