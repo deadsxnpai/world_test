@@ -44,6 +44,30 @@ module.exports = {
                 console.error(error)
             }
         },
+        async updateStudent(ctx) {
+            const { id } = ctx.params
+            try {
+                const query = `
+                UPDATE students
+                SET first_name = $2, last_name = $3, date_of_birth = $4, email=$5, phone_number=$6, address=$7
+                WHERE student_id = $1
+                RETURNING *`;
+                const values = [
+                    id, 
+                    ctx.params.first_name, 
+                    ctx.params.last_name,
+                    ctx.params.date_of_birth,
+                    ctx.params.email,
+                    ctx.params.phone_number,
+                    ctx.params.address];
+
+                const result = await pool.query(query, values);
+                return result.rows[0]; 
+
+            } catch (error) {
+                console.error(error)
+            }
+        },
     },
 };
 

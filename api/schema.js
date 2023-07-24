@@ -13,6 +13,15 @@ const typeDefs = gql`
         address: String!
         transcript_id: ID!
     }
+    input StudentInput {
+        id:ID!
+        first_name: String
+        last_name: String
+        date_of_birth: Date,
+        email: String
+        phone_number: String
+        address: String
+    }
 
     type Transcript {
         id: ID!
@@ -46,6 +55,10 @@ const typeDefs = gql`
             phone_number:String!, 
             address:String!
             transcript_id:ID!
+        ): Student
+
+        updateStudent(
+            input: StudentInput!
         ): Student
 
         deleteStudentById(

@@ -7,7 +7,6 @@ const resolvers = {
         getStudentById: async (_, { id }, { broker }) => {
             return await broker.call("students.getStudentById", { id });
         },
-
         // Transcriptions
         getAllTranscripts: async (_, __, { broker }) => {
             return await broker.call("transcripts.getAllTranscripts");
@@ -37,6 +36,9 @@ const resolvers = {
         //Students
         createStudent: async (_, {first_name, last_name,date_of_birth, email, phone_number,address, transcript_id}, { broker }) => {
             return await broker.call("students.createStudent",{first_name, last_name,date_of_birth, email, phone_number, address, transcript_id});
+        },
+        updateStudent: async (_, {id, first_name, last_name,date_of_birth, email, phone_number,address}, { broker }) => {
+            return await broker.call("students.updateStudent",{id, first_name, last_name, date_of_birth, email, phone_number, address});
         },
         deleteStudentById: async(_,{id}, { broker }) => {
             return await broker.call("students.deteleStudentById",{id});
