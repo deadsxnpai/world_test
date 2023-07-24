@@ -29,7 +29,7 @@ module.exports = {
             for(var key in subjectsBySemester) {
                 count++;
             }
-            
+
             const subjectsAmount = count * 5 / 4;
             console.log("Всего можно получить в семестре:", subjectsAmount)
 
@@ -43,7 +43,7 @@ module.exports = {
                 console.error(error);
             }
             
-            rating = Math.floor(rating, 3) || 0;
+            rating = Math.round(rating, 3) || 0;
 
             const existingRecordQuery = 'SELECT * FROM ratings WHERE transcript_id = $1';
             const { rows } = await query(existingRecordQuery, [transcript_id]);
