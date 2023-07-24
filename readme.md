@@ -44,8 +44,8 @@
 <hr>
 <h3>Install:</h3>
 <p><code>npm i express apollo-server-express graphql graphql-tag moleculer moleculer-web nats nodemon pg</code></p>
-<p><code>npm run dev</code>:for development</p>
-<p><code>npm start</code>:for run</p><hr>
+<p><code>npm run dev</code>: for development</p>
+<p><code>npm start</code>: for run</p><hr>
 <h3>API:</h3>
     1. crud-methods для каждой таблицы<br>
     2. get..ById get-метод по id для каждой таблицы.<br>
