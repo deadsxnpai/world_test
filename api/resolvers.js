@@ -38,13 +38,25 @@ const resolvers = {
         createStudent: async (_, {first_name, last_name,date_of_birth, email, phone_number,address, transcript_id}, { broker }) => {
             return await broker.call("students.createStudent",{first_name, last_name,date_of_birth, email, phone_number, address, transcript_id});
         },
+        deleteStudentById: async(_,{id}, { broker }) => {
+            return await broker.call("students.deteleStudentById",{id});
+        },
         //Subjects
         createSubject: async(_,{subject_name, grade, semester}, { broker }) => {
             return await broker.call("subjects.createSubject",{subject_name, grade, semester});
         },
+        createFourSubject: async(_,{subject_name, grade, semester}, { broker }) => {
+            return await broker.call("subjects.createFourSubjects",{subject_name, grade, semester});
+        },
+        deleteSubjectById: async(_,{id}, { broker }) => {
+            return await broker.call("subjects.deteleSubjectById",{id});
+        },
         //Transcripts
         createTransript: async(_,{group_name}, { broker }) => {
             return await broker.call("transcripts.createTransript",{group_name});
+        },
+        deleteTranscriptById: async(_,{id}, { broker }) => {
+            return await broker.call("transcripts.deteleTranscriptById",{id});
         },
         createTranscriptsSubjects: async(_,{transcript_id, subject_id}, { broker }) => {
             return await broker.call("transcripts.createTranscriptsSubjects", {transcript_id, subject_id});

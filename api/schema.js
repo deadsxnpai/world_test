@@ -48,25 +48,45 @@ const typeDefs = gql`
             transcript_id:ID!
         ): Student
 
+        deleteStudentById(
+            id:ID!
+        ): Boolean
+
         createSubject(
             subject_name:String!, 
             grade:Float!, 
             semester:String!
         ): Subject
 
+        createFourSubject(
+            subject_name:String!, 
+            grade:Float!, 
+            semester:String!
+        ): [Subject]
+
+        deleteSubjectById(
+            id:ID!
+        ): Boolean
+
         createTransript(
             group_name:String!
         ): Transcript
+
+        deleteTranscriptById(
+            id:ID!
+        ): Boolean
+
+        createTranscriptsSubjects(
+            transcript_id:ID!
+            subject_id:ID!
+        ): TranscriptSubjects
 
         calculateRatingByTranscript(
             transcript_id:ID!
             semester:String!
         ): Rating
 
-        createTranscriptsSubjects(
-            transcript_id:ID!
-            subject_id:ID!
-        ): TranscriptSubjects
+        
     }
 
     type Query {

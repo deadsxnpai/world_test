@@ -25,6 +25,7 @@ module.exports = {
             const subjects = await this.broker.call('subjects.getSubjectsByTranscriptId', {id: transcript_id});
             const subjectsBySemester = await this.broker.call('subjects.getSubjectsBySemester', {semester:semester});
 
+             // Calculate rating formula
             var count = 0;
             for(var key in subjectsBySemester) {
                 count++;
@@ -35,7 +36,6 @@ module.exports = {
 
             subjects.forEach(element => rating += parseInt(element.grade));
 
-            // Calculate rating formula
             try {
                 rating = parseFloat(rating * 100 / subjectsAmount);
                 console.log(rating)
