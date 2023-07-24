@@ -53,4 +53,4 @@
 <hr>
 <h2>Демонстрация решения:</h2>
 
-[![1.png](https://i.postimg.cc/4NVRS12Z/1.png)](https://postimg.cc/1fmdgDZY)<hr>
+[![2.png](https://i.postimg.cc/j2rWD4k4/2.png)](https://postimg.cc/7GmPc045)<hr>

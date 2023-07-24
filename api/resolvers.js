@@ -1,5 +1,3 @@
-const { calculateRatingByTranscript } = require('../services/ratings.service');
-
 const resolvers = {
     Query: {
         // Students 
@@ -36,21 +34,24 @@ const resolvers = {
     },
 
     Mutation: { 
+        //Students
         createStudent: async (_, {first_name, last_name,date_of_birth, email, phone_number,address, transcript_id}, { broker }) => {
             return await broker.call("students.createStudent",{first_name, last_name,date_of_birth, email, phone_number, address, transcript_id});
         },
+        //Subjects
         createSubject: async(_,{subject_name, grade, semester}, { broker }) => {
             return await broker.call("subjects.createSubject",{subject_name, grade, semester});
         },
-
+        //Transcripts
         createTransript: async(_,{group_name}, { broker }) => {
             return await broker.call("transcripts.createTransript",{group_name});
         },
         createTranscriptsSubjects: async(_,{transcript_id, subject_id}, { broker }) => {
             return await broker.call("transcripts.createTranscriptsSubjects", {transcript_id, subject_id});
         },
-        calculateRatingByTranscript: async(_,{transcript_id}, { broker }) => {
-            return await broker.call("ratings.calculateRatingByTranscript", {transcript_id, broker});
+        //Ratings
+        calculateRatingByTranscript: async(_,{transcript_id, semester}, { broker }) => {
+            return await broker.call("ratings.calculateRatingByTranscript", {transcript_id, semester});
         },
         
     }

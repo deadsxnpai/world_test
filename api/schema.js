@@ -28,6 +28,7 @@ const typeDefs = gql`
     
     type Rating {
         transcript_id:ID!
+        semester:String!
         rating: Float
     }
 
@@ -59,6 +60,7 @@ const typeDefs = gql`
 
         calculateRatingByTranscript(
             transcript_id:ID!
+            semester:String!
         ): Rating
 
         createTranscriptsSubjects(

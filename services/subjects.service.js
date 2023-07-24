@@ -16,6 +16,15 @@ module.exports = {
             `, [id]);
             return rows;
         },
+
+        async getSubjectsBySemester(ctx) {
+            const { rows } = await query(`
+            SELECT * FROM subjects  
+            where semester = $1 ;
+            `, [ctx.params.semester]);
+            return rows;
+        },
+
         async createSubject(ctx) {
             const existingRecordQuery = 'SELECT * FROM subjects WHERE subject_name = $1 AND grade = $2 AND semester = $3';
             const { rows } = await query(existingRecordQuery, [ctx.params.subject_name, ctx.params.grade, ctx.params.semester]);
