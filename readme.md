@@ -54,3 +54,4 @@
 <h2>Демонстрация решения:</h2>
 
 [![Screenshot-20230724-153734.png](https://i.postimg.cc/YSXFXPqn/Screenshot-20230724-153734.png)](https://postimg.cc/R3HqhXtK)<hr>
+[![3.png](https://i.postimg.cc/mkKswCnp/3.png)](https://postimg.cc/9wPKXRCy)<hr>
