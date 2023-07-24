@@ -42,6 +42,8 @@
         <li>rating (посчитанный рейтинг по зачетке)</li>
     </ul>
 <hr>
+<h3>Install:</h3>
+<p><code>npm i express apollo-server-express graphql graphql-tag moleculer moleculer-web nats nodemon pg</code></p><hr>
 <h3>API:</h3>
     1. crud-methods для каждой таблицы<br>
     2. get..ById get-метод по id для каждой таблицы.<br>
