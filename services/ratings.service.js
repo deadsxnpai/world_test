@@ -27,7 +27,7 @@ module.exports = {
 
              // Calculate rating formula
             var count = 0;
-            for(var key in subjectsBySemester) {
+            for(let key in subjectsBySemester) {
                 count++;
             }
 
