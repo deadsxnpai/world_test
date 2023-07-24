@@ -49,7 +49,4 @@
 <hr>
 <h2>Демонстрация решения:</h2>
 
-![Иллюстрация к проекту](https://github.com/deadsxnpai/../raw/master/../file.png)<hr>
-![Иллюстрация к проекту](https://github.com/deadsxnpai/../raw/master/../file.png)<hr>
-![Иллюстрация к проекту](https://github.com/deadsxnpai/../raw/master/../file.png)<hr>
-![Иллюстрация к проекту](https://github.com/deadsxnpai/../raw/master/../file.png)<hr>
+[![1.png](https://i.postimg.cc/4NVRS12Z/1.png)](https://postimg.cc/1fmdgDZY)<hr>

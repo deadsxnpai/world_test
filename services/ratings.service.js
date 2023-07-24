@@ -13,10 +13,10 @@ module.exports = {
             const { rows } = await query(`
             SELECT * FROM ratings WHERE transcript_id = $1;
             `, [id]);
-            return rows;
+            return rows[0];
         },
 
-        async  calculateRatingByTranscript(ctx) {
+        async calculateRatingByTranscript(ctx) {
             const {transcript_id} = ctx.params
             var rating = 0
             const subjects = await this.broker.call('subjects.getSubjectsByTranscriptId', {id:transcript_id});

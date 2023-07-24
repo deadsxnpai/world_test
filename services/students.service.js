@@ -13,13 +13,6 @@ module.exports = {
             return rows[0];
         },
         async createStudent(ctx) {
-            // const { first_name } = ctx.params
-            // const { last_name } = ctx.params
-            // const { date_of_birth } = ctx.params
-            // const { email } = ctx.params
-            // const { phone_number } = ctx.params
-            // const { address } = ctx.params
-            // const { transcript_id } = ctx.params
             const insertQuery = `
                 INSERT INTO students (first_name, last_name, date_of_birth, email, phone_number,address, transcript_id) 
                 VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *

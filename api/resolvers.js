@@ -20,7 +20,7 @@ const resolvers = {
 
         // Subjects
         getAllSubjects: async (_, __, { broker }) => {
-            return await broker.call("subjects.getAllSubject");
+            return await broker.call("subjects.getAllSubjects");
         },
         getSubjectsByTranscriptId: async (_, { id }, { broker }) => {
             return await broker.call("subjects.getSubjectsByTranscriptId", { id });
