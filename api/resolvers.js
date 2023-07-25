@@ -27,47 +27,56 @@ const resolvers = {
         getAllRatings: async (_, __, { broker }) => {
             return await broker.call("ratings.getAllRatings");
         },
-        getRatingById: async (_, { id }, { broker }) => {
+        getRatingByTranscriptId: async (_, { id }, { broker }) => {
             return await broker.call("ratings.getRatingById", { id });
         },
     },
 
     Mutation: { 
         //Students
-        createStudent: async (_, {first_name, last_name,date_of_birth, email, phone_number,address, transcript_id}, { broker }) => {
-            return await broker.call("students.createStudent",{first_name, last_name,date_of_birth, email, phone_number, address, transcript_id});
+        createStudent: async (_, args, { broker }) => {
+            const { input } = args;
+            return await broker.call("students.createStudent", input);
         },
-        updateStudent: async (_, {id, first_name, last_name,date_of_birth, email, phone_number,address}, { broker }) => {
-            return await broker.call("students.updateStudent",{id, first_name, last_name, date_of_birth, email, phone_number, address});
+        updateStudent: async (_, args, { broker }) => {
+            const { input } = args;
+            return await broker.call("students.updateStudent", input);
         },
         deleteStudentById: async(_,{id}, { broker }) => {
             return await broker.call("students.deteleStudentById",{id});
         },
         //Subjects
-        createSubject: async(_,{subject_name, grade, semester}, { broker }) => {
-            return await broker.call("subjects.createSubject",{subject_name, grade, semester});
+        createSubject: async(_, args, { broker }) => {
+            const { input } = args;
+            return await broker.call("subjects.createSubject", input);
         },
-        createFourSubject: async(_,{subject_name, grade, semester}, { broker }) => {
-            return await broker.call("subjects.createFourSubjects",{subject_name, grade, semester});
+        createFourSubject: async(_, args, { broker }) => {
+            const { input } = args;
+            return await broker.call("subjects.createFourSubjects", input);
         },
         deleteSubjectById: async(_,{id}, { broker }) => {
             return await broker.call("subjects.deteleSubjectById",{id});
         },
         //Transcripts
-        createTransript: async(_,{group_name}, { broker }) => {
-            return await broker.call("transcripts.createTransript",{group_name});
+        createTransript: async(_, args, { broker }) => {
+            const { input } = args;
+            return await broker.call("transcripts.createTransript", input);
+        },
+        updateTranscript: async (_, args, { broker }) => {
+            const { input } = args;
+            return await broker.call("transcripts.updateTranscript", input);
         },
         deleteTranscriptById: async(_,{id}, { broker }) => {
             return await broker.call("transcripts.deteleTranscriptById",{id});
         },
-        createTranscriptsSubjects: async(_,{transcript_id, subject_id}, { broker }) => {
-            return await broker.call("transcripts.createTranscriptsSubjects", {transcript_id, subject_id});
+        createTranscriptsSubjects: async(_, args, { broker }) => {
+            const { input } = args;
+            return await broker.call("transcripts.createTranscriptsSubjects", input);
         },
         //Ratings
         calculateRatingByTranscript: async(_,{transcript_id, semester}, { broker }) => {
             return await broker.call("ratings.calculateRatingByTranscript", {transcript_id, semester});
         },
-        
     }
 };
 

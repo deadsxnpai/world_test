@@ -35,6 +35,7 @@ module.exports = {
                 console.error(error)
             }
         },
+
         async deteleStudentById(ctx) {
             const { id } = ctx.params
             try {
@@ -44,29 +45,39 @@ module.exports = {
                 console.error(error)
             }
         },
+
         async updateStudent(ctx) {
-            const { id } = ctx.params
             try {
-                const query = `
-                UPDATE students
-                SET first_name = $2, last_name = $3, date_of_birth = $4, email=$5, phone_number=$6, address=$7
-                WHERE student_id = $1
-                RETURNING *`;
-                const values = [
-                    id, 
-                    ctx.params.first_name, 
-                    ctx.params.last_name,
-                    ctx.params.date_of_birth,
-                    ctx.params.email,
-                    ctx.params.phone_number,
-                    ctx.params.address];
+                const querySelect = 'SELECT * FROM students WHERE id = $1';
+                const valuesSelect = [ctx.params.id];
+                const resultSelect = await query(querySelect, valuesSelect);
+        
+                if (resultSelect.rowCount === 0) {
+                  throw new Error('Студент с указанным Id не найден.');
+                }
+        
+                let setQuery = '';
+                const valuesUpdate = [];
+        
+                Object.keys(ctx.params).forEach((key, index) => {
+                  valuesUpdate.push(ctx.params[key]);
+                  setQuery += `"${key}" = $${index + 1}, `;
+                });
+        
+                setQuery = setQuery.slice(0, -2); // Удаляем последнюю запятую и пробел
+        
+                const queryUpdate = `
+                  UPDATE students
+                  SET ${setQuery}
+                  WHERE id = ${ctx.params.id}
+                  RETURNING *`;
 
-                const result = await pool.query(query, values);
-                return result.rows[0]; 
-
-            } catch (error) {
-                console.error(error)
-            }
+                const resultUpdate = await query(queryUpdate, valuesUpdate);
+                return resultUpdate.rows[0];
+              } catch (error) {
+                console.error('Ошибка при обновлении студента:', error);
+                throw error; 
+              }
         },
     },
 };

@@ -7,29 +7,40 @@ const typeDefs = gql`
         id: ID!
         first_name: String
         last_name: String
-        date_of_birth: Date,
+        date_of_birth: Date
         email: String
         phone_number: String!
         address: String!
         transcript_id: ID!
     }
     input StudentInput {
-        id:ID!
+        id:ID
         first_name: String
         last_name: String
-        date_of_birth: Date,
+        date_of_birth: Date
         email: String
         phone_number: String
         address: String
+        transcript_id: ID
     }
 
     type Transcript {
         id: ID!
         group_name:String
     }
+    input TranscriptInput {
+        id:ID
+        group_name:String
+    }
 
     type Subject {
         id: ID!
+        subject_name: String
+        grade: Float
+        semester: String
+    }
+    input SubjectInput {
+        id:ID
         subject_name: String
         grade: Float
         semester: String
@@ -45,16 +56,15 @@ const typeDefs = gql`
         transcript_id:ID!
         subject_id:ID!
     }
+    input TranscriptSubjectsInput{
+        transcript_id:ID
+        subject_id:ID
+        group_name:String
+    }
 
     type Mutation {
         createStudent(
-            first_name:String!, 
-            last_name:String!, 
-            date_of_birth: Date!
-            email:String!, 
-            phone_number:String!, 
-            address:String!
-            transcript_id:ID!
+            input: StudentInput!
         ): Student
 
         updateStudent(
@@ -66,15 +76,11 @@ const typeDefs = gql`
         ): Boolean
 
         createSubject(
-            subject_name:String!, 
-            grade:Float!, 
-            semester:String!
+            input: SubjectInput!
         ): Subject
 
         createFourSubject(
-            subject_name:String!, 
-            grade:Float!, 
-            semester:String!
+            input: SubjectInput!
         ): [Subject]
 
         deleteSubjectById(
@@ -82,7 +88,11 @@ const typeDefs = gql`
         ): Boolean
 
         createTransript(
-            group_name:String!
+            input: TranscriptInput! 
+        ): Transcript
+
+        updateTranscript(
+            input: TranscriptInput! 
         ): Transcript
 
         deleteTranscriptById(
@@ -90,8 +100,7 @@ const typeDefs = gql`
         ): Boolean
 
         createTranscriptsSubjects(
-            transcript_id:ID!
-            subject_id:ID!
+            input:TranscriptSubjectsInput
         ): TranscriptSubjects
 
         calculateRatingByTranscript(
@@ -110,7 +119,7 @@ const typeDefs = gql`
         getAllSubjects: [Subject]
         getSubjectsByTranscriptId(id: ID!): [Subject]
         getAllRatings: [Rating]
-        getRatingById(id:ID!): Rating
+        getRatingByTranscriptId(id:ID!): Rating
     }
 `;
 
