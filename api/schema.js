@@ -117,9 +117,9 @@ const typeDefs = gql`
         getAllTranscripts: [Transcript]
         getTranscriptById(id: ID!): Transcript
         getAllSubjects: [Subject]
-        getSubjectsByTranscriptId(id: ID!): [Subject]
+        getSubjectsByTranscriptId(id: ID!, semester:String!): [Subject]
         getAllRatings: [Rating]
-        getRatingByTranscriptId(id:ID!): Rating
+        getRatingByTranscriptId(id:ID!): [Rating]
     }
 `;
 

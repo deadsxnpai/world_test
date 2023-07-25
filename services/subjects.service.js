@@ -15,11 +15,14 @@ module.exports = {
         async getSubjectsByTranscriptId(ctx) {
             try {
                 const { id } = ctx.params
+                const {semester}= ctx.params
                 const { rows } = await query(`
-                SELECT * FROM subjects join transcripts_subjects 
-                on transcript_id =  $1 
-                where subjects.id = transcripts_subjects.subject_id ;
-                `, [id]);
+                    SELECT *
+                    FROM subjects
+                    JOIN transcripts_subjects ON subjects.id = transcripts_subjects.subject_id
+                    WHERE transcripts_subjects.transcript_id = $1
+                    AND subjects.semester = $2;
+                `, [id, semester]);
                 return rows;
             } catch(error) {
                 console.error(error)
@@ -29,8 +32,8 @@ module.exports = {
         async getSubjectsBySemester(ctx) {
             try {
                 const { rows } = await query(`
-                SELECT * FROM subjects  
-                where semester = $1 ;
+                    SELECT * FROM subjects  
+                    where semester = $1 ;
                 `, [ctx.params.semester]);
                 return rows;
             } catch(error) {

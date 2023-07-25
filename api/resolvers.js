@@ -19,8 +19,8 @@ const resolvers = {
         getAllSubjects: async (_, __, { broker }) => {
             return await broker.call("subjects.getAllSubjects");
         },
-        getSubjectsByTranscriptId: async (_, { id }, { broker }) => {
-            return await broker.call("subjects.getSubjectsByTranscriptId", { id });
+        getSubjectsByTranscriptId: async (_, { id, semester }, { broker }) => {
+            return await broker.call("subjects.getSubjectsByTranscriptId", { id, semester });
         },
 
         // Ratings
