@@ -54,5 +54,5 @@
 <h2>Демонстрация решения:</h2>
 
 [![Screenshot-20230725-051441.png](https://i.postimg.cc/qB33nHZQ/Screenshot-20230725-051441.png)](https://postimg.cc/Lhm5KwSZ)<hr>
-[![Screenshot-20230725-051024.png](https://i.postimg.cc/B6xsxh5t/Screenshot-20230725-051024.png)](https://postimg.cc/TLYZxJ4X)<hr>
+[![Screenshot-20230725-051441.png](https://i.postimg.cc/qB33nHZQ/Screenshot-20230725-051441.png)](https://postimg.cc/Lhm5KwSZ)<hr>
 
