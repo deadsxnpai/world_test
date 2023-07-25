@@ -53,7 +53,5 @@
 <hr>
 <h2>Демонстрация решения:</h2>
 
-[![Screenshot-20230724-153734.png](https://i.postimg.cc/YSXFXPqn/Screenshot-20230724-153734.png)](https://postimg.cc/R3HqhXtK)<hr>
-[![3.png](https://i.postimg.cc/mkKswCnp/3.png)](https://postimg.cc/9wPKXRCy)<hr>
 [![Screenshot-20230725-043418.png](https://i.postimg.cc/Y0SwFtdq/Screenshot-20230725-043418.png)](https://postimg.cc/DJRDk3Vt)<hr>
 [![Screenshot-20230725-043758.png](https://i.postimg.cc/L6np66qx/Screenshot-20230725-043758.png)](https://postimg.cc/QHGPfDJ7)<hr>
